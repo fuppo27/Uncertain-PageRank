@@ -1,0 +1,31 @@
+# Experiment 17: robustness gate on the time scale (short, deliberately limited)
+#
+# Purpose: fix the limits of what we claim. The time scale is not a main result.
+# Hypotheses:
+#   H1. Normalising by tau = L(1-alpha) does not work consistently across
+#       non-uniform q_e, degree heterogeneity and several seeds (its coefficient
+#       of variation over alpha exceeds that of L_half).
+#   H2. rho(L) increases monotonically and rises steeply for small L.
+#   H3. L_half is not fully invariant to alpha (already seen on the star).
+# Compared against: distance to both p-avg and s-avg, top-k overlap, Kendall tau.
+# Stopping rule: whether CV(tau_half) > CV(L_half) holds in most settings.
+#
+# Note: L is the number of random-walk transitions for which a world stays
+# fixed, which is not the same thing as a time window in real data.
+
+name: exp17_timescale
+seed: 20260921
+output_dir: outputs/exp17_timescale
+
+alpha: [0.50, 0.70, 0.85, 0.95]
+intervals: [1, 2, 3, 4, 5, 6, 8, 10, 15, 20, 30, 50, 100]
+topk: [1, 3, 5]
+seeds: [1, 2, 3]
+
+graphs:
+  - {label: "ER uniform q=0.5",        topology: er,    n: 8,  m: 14, q: uniform, q_value: 0.5}
+  - {label: "ER uniform q=0.9",        topology: er,    n: 8,  m: 14, q: uniform, q_value: 0.9}
+  - {label: "ER Beta",       topology: er,    n: 8,  m: 14, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Preferential attachment Beta",    topology: pa,    n: 8,  m_out: 2, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Star Beta",          topology: star,  n: 8,  m: 14, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Cycle with chords Beta",   topology: cycle, n: 10, m: 12, q: beta, q_mean: 0.6, q_concentration: 3.0}

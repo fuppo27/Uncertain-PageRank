@@ -1,0 +1,38 @@
+# Experiment 21: whether the selection advantage of dV survives a finite Monte
+# Carlo budget
+#
+# Go/no-go gate:
+#   dV must beat the best cheap baseline in a paired comparison, keep that
+#   advantage at a practical Monte Carlo budget, and show a better time-loss
+#   curve than evaluating the value of information per candidate by sampling.
+#   If it does not, the edge-acquisition idea is dropped as a main contribution.
+#
+# Design:
+#   - selection never looks at the true world
+#   - the evaluation worlds are shared by every method (paired comparison) and
+#     are independent of the decoder's samples
+#   - the oracle is the true global optimum over all subsets, not greedy
+#   - R_star (the infinite-sample limit), R_mc (finite) and their gap are
+#     reported separately
+
+name: exp21_mc_decoder
+seed: 20260923
+output_dir: outputs/exp21_mc_decoder
+alpha: 0.85
+tol: 1.0e-12
+topk: 3
+
+budgets: [1, 2, 3]
+decoder_samples: [100, 1000]
+decoder_repeats: 20
+seeds: [1, 2, 3, 4, 5]
+
+graphs:
+  - {label: "ER n=16 uniform q=0.5",   topology: er,    n: 16, m: 12, q: uniform, q_value: 0.5}
+  - {label: "ER n=16 Beta",  topology: er,    n: 16, m: 12, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "ER n=16 mixed certain",  topology: er,    n: 16, m: 16, q: mixed, q_mean: 0.6, q_concentration: 3.0, certain_fraction: 0.25}
+  - {label: "Preferential attachment n=16",     topology: pa,    n: 16, m_out: 1, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Star (6 bidirectional spokes)", topology: star,  n: 16, m: 12, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  # A control that breaks ties, to separate the Gaussian failure from tie density
+  - {label: "Star (asymmetric z; few ties)", topology: star,  n: 16, m: 12, q: beta, q_mean: 0.6, q_concentration: 3.0, personalization: skewed}
+  - {label: "Cycle with 2 chords",        topology: cycle, n: 16, m: 12, q: beta, q_mean: 0.6, q_concentration: 3.0}

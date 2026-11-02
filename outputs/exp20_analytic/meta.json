@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-09-22T17:07:38+09:00",
+  "git": {
+    "commit": "d3628925b2adb491e27453fb8c43ec876b8a6cda",
+    "branch": "exp-20260919-001",
+    "dirty": "yes"
+  },
+  "python": "3.11.0",
+  "numpy": "1.24.2",
+  "scipy": "1.11.1",
+  "platform": "Linux-5.15.0-122-generic-x86_64-with-glibc2.35",
+  "hostname": "fsm01",
+  "config": {
+    "name": "exp20_analytic",
+    "seed": 20260922,
+    "output_dir": "outputs/exp20_analytic",
+    "alpha": 0.85,
+    "normal_draws": 100000,
+    "topk": [
+      3
+    ],
+    "L_over_k": [
+      1.5,
+      2,
+      3,
+      5
+    ],
+    "budgets": [
+      1,
+      2,
+      3
+    ],
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "tie_permutations": [
+      null,
+      101,
+      202
+    ],
+    "graphs": [
+      {
+        "label": "ER n=16 uniform q=0.5",
+        "topology": "er",
+        "n": 16,
+        "m": 12,
+        "q": "uniform",
+        "q_value": 0.5
+      },
+      {
+        "label": "ER n=16 mixed certain",
+        "topology": "er",
+        "n": 16,
+        "m": 16,
+        "q": "mixed",
+        "q_mean": 0.6,
+        "q_concentration": 3.0,
+        "certain_fraction": 0.25
+      },
+      {
+        "label": "ER n=16 Beta",
+        "topology": "er",
+        "n": 16,
+        "m": 12,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "Preferential attachment n=16",
+        "topology": "pa",
+        "n": 16,
+        "m_out": 1,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "Star (6 bidirectional spokes)",
+        "topology": "star",
+        "n": 16,
+        "m": 12,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "Cycle with 2 chords",
+        "topology": "cycle",
+        "n": 16,
+        "m": 12,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      }
+    ]
+  }
+}

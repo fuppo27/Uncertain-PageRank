@@ -1,0 +1,37 @@
+# Experiment 25: source-level attribution on real networks
+#
+# Part A: the cost of computing Phi_hat for every source, and how concentrated
+#         the shares are (all networks).
+# Part B: comparison against a Monte Carlo reference (networks with
+#         mc_validation: true only).
+#
+# Part B needs N * (1 + number of candidates) PageRank solves, which is out of
+# reach at the largest sizes. For those networks we report Part A only and say
+# plainly that the result has not been checked against a reference.
+
+name: exp25_real_networks
+seed: 20260923
+output_dir: outputs/exp25_real_networks
+alpha: 0.85
+tol: 1.0e-12
+
+q_mean: 0.7
+q_concentration: 10.0
+
+# Rank boundaries fixed before any possible world is examined
+boundary_ks: [10, 100, 1000]
+contrasts: [boundary, node_top]
+
+# --- Part B (Monte Carlo validation) settings ---
+n_candidate_sources: 30
+n_strata: 8
+reference_samples: 1000
+mc_budgets: [250]
+mc_tol: 1.0e-8
+mc_chunk: 128
+
+networks:
+  - {name: Trackback NW, path: data/raw/original/trackback/blog34.dlbl, mc_validation: false}
+  - {name: wiki-Vote,    path: data/raw/snap/wiki-Vote.txt.gz,          mc_validation: false}
+  - {name: soc-Epinions1, path: data/raw/snap/soc-Epinions1.txt.gz,     mc_validation: false}
+  - {name: Follow NW,    path: data/raw/original/follow/ameblo.dlbl,    mc_validation: false}

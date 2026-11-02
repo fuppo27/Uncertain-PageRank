@@ -1,0 +1,16 @@
+{
+  "title": "Auditable PageRank on Uncertain Graphs: code and result data",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    {"name": "Fushimi, Takayasu", "affiliation": "Tokyo University of Technology",
+     "orcid": "0000-0003-3448-8182"}
+  ],
+  "description": "Code and result data for the paper. Exact second moments of the random transition matrix of an uncertain graph, and a first-order attribution of the uncertainty of a fixed contrast of the PageRank vector over source nodes. Includes the result CSVs behind every table and figure, and the two laboratory networks used in the evaluation.",
+  "keywords": [
+    "uncertain graphs", "PageRank", "possible worlds",
+    "variance-based sensitivity analysis", "Sobol indices",
+    "uncertainty quantification", "network analysis"
+  ],
+  "access_right": "open"
+}

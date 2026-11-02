@@ -1,0 +1,34 @@
+# Experiment 23: comparison against a Monte Carlo reference at medium scale
+#
+# The reference is a large-sample run; the budgeted competitor uses independent
+# random draws. Candidate sources are drawn with a fixed seed, never by score.
+
+name: exp23c_owen
+seed: 20260923
+output_dir: outputs/exp23c_owen
+alpha: 0.85
+
+boundary_ks: [1, 2, 3]
+contrasts: [boundary, node_top, identity]
+n_candidate_sources: 40
+reference_samples: 4000
+mc_budgets: [125, 500, 2000]
+seeds: [1, 2, 3]
+
+graphs:
+  - {label: "ER n=100",      topology: er, n: 100, m: 300, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "ER n=200",      topology: er, n: 200, m: 600, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Preferential attachment n=200", topology: pa, n: 200, m_out: 3, q: beta, q_mean: 0.5, q_concentration: 2.0}
+
+# Candidates are stratified by quantile of y0. Under plain random sampling, on
+# a heavy-tailed graph every candidate turned out to be a source with Psi_u near
+# zero, which left the Monte Carlo reference meaningless.
+candidate_selection: stratified_y0
+n_strata: 8
+
+# Estimator for the reference and for the budgeted competitor. "owen" is
+# Correlation 2, which uses three independent input vectors. The naive estimator
+# has a large variance where Psi_u << mu^2: at equal cost its split-half
+# agreement is 0.002 against 0.988. Owen costs twice as much per sample, so the
+# sample count is halved.
+reference_estimator: owen

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software or the result data, please cite the paper."
+title: "Auditable PageRank on Uncertain Graphs"
+type: software
+authors:
+  - family-names: Fushimi
+    given-names: Takayasu
+    orcid: "https://orcid.org/0000-0003-3448-8182"
+    affiliation: "Tokyo University of Technology"
+license: MIT
+abstract: >-
+  Exact second moments of the random transition matrix of an uncertain graph, and a
+  first-order attribution of the uncertainty of a fixed contrast of the PageRank vector
+  over source nodes.

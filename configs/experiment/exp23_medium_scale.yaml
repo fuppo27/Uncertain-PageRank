@@ -1,0 +1,21 @@
+# Experiment 23: comparison against a Monte Carlo reference at medium scale
+#
+# The reference is a large-sample run; the budgeted competitor uses independent
+# random draws. Candidate sources are drawn with a fixed seed, never by score.
+
+name: exp23_medium_scale
+seed: 20260923
+output_dir: outputs/exp23_medium_scale
+alpha: 0.85
+
+boundary_ks: [1, 2, 3]
+contrasts: [boundary, node_top, identity]
+n_candidate_sources: 40
+reference_samples: 8000
+mc_budgets: [250, 1000, 4000]
+seeds: [1, 2, 3]
+
+graphs:
+  - {label: "ER n=100",      topology: er, n: 100, m: 300, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "ER n=200",      topology: er, n: 200, m: 600, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Preferential attachment n=200", topology: pa, n: 200, m_out: 3, q: beta, q_mean: 0.5, q_concentration: 2.0}

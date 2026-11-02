@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-09-26T03:09:48+09:00",
+  "git": {
+    "commit": "c0fccb59056d6fd827332df9a8250b245ca782ef",
+    "branch": "exp-20260919-001",
+    "dirty": "yes"
+  },
+  "python": "3.11.0",
+  "numpy": "1.24.2",
+  "scipy": "1.11.1",
+  "platform": "Linux-5.15.0-122-generic-x86_64-with-glibc2.35",
+  "hostname": "fsm01",
+  "config": {
+    "name": "exp23c_owen",
+    "seed": 20260923,
+    "output_dir": "outputs/exp23c_owen",
+    "alpha": 0.85,
+    "boundary_ks": [
+      1,
+      2,
+      3
+    ],
+    "contrasts": [
+      "boundary",
+      "node_top",
+      "identity"
+    ],
+    "n_candidate_sources": 40,
+    "reference_samples": 4000,
+    "mc_budgets": [
+      125,
+      500,
+      2000
+    ],
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "graphs": [
+      {
+        "label": "ER n=100",
+        "topology": "er",
+        "n": 100,
+        "m": 300,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "ER n=200",
+        "topology": "er",
+        "n": 200,
+        "m": 600,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "Preferential attachment n=200",
+        "topology": "pa",
+        "n": 200,
+        "m_out": 3,
+        "q": "beta",
+        "q_mean": 0.5,
+        "q_concentration": 2.0
+      }
+    ],
+    "candidate_selection": "stratified_y0",
+    "n_strata": 8,
+    "reference_estimator": "owen"
+  }
+}

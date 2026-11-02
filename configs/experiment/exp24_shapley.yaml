@@ -1,0 +1,21 @@
+# Experiment 24: allocating the interaction by Shapley effects (a small-scale
+# side evaluation)
+#
+# All 2^d subsets are enumerated, so the number of sources is tightly bounded.
+
+name: exp24_shapley
+seed: 20260923
+output_dir: outputs/exp24_shapley
+alpha: 0.85
+
+boundary_ks: [1, 2, 3]
+contrasts: [boundary, node_top, identity]
+max_sources: 11
+seeds: [1, 2, 3, 4, 5]
+
+graphs:
+  - {label: "ER n=10",     topology: er,    n: 10, m: 11, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "ER n=10 uniform", topology: er,    n: 10, m: 11, q: uniform, q_value: 0.5}
+  - {label: "Preferential attachment n=9", topology: pa,    n: 9,  m_out: 1, q: beta, q_mean: 0.5, q_concentration: 2.0}
+  - {label: "Star n=7",     topology: star,  n: 8,  m: 10, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Cycle n=10",  topology: cycle, n: 10, m: 11, q: beta, q_mean: 0.6, q_concentration: 3.0}

@@ -1,0 +1,27 @@
+# Experiment 22: validation of the source-level uncertainty attribution
+#
+# Criterion:
+#   phi_hat must predict the true Psi_u better than PageRank, degree, entropy
+#   and random, and also beat the product baseline y0^2 * sum q(1-q). Failing
+#   that, the directional information in the attribution is not doing any work.
+
+name: exp22_source_attribution
+seed: 20260923
+output_dir: outputs/exp22_source_attribution
+alpha: 0.85
+
+# Rank boundaries fixed before any possible world is examined
+boundary_ks: [1, 2, 3]
+budgets: [1, 2, 3]
+max_observed_edges: 20
+
+contrasts: [boundary, node_top, identity, gap_stratified]
+seeds: [1, 2, 3, 4, 5]
+
+graphs:
+  - {label: "ER n=16 Beta",      topology: er,    n: 16, m: 14, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "ER n=16 uniform 0.5",    topology: er,    n: 16, m: 14, q: uniform, q_value: 0.5}
+  - {label: "ER mixed certain",       topology: er,    n: 16, m: 18, q: mixed, q_mean: 0.6, q_concentration: 3.0, certain_fraction: 0.25}
+  - {label: "Preferential attachment n=16",     topology: pa,    n: 16, m_out: 1, q: beta, q_mean: 0.5, q_concentration: 2.0}
+  - {label: "Cycle with chords",         topology: cycle, n: 14, m: 14, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Star",              topology: star,  n: 16, m: 14, q: beta, q_mean: 0.6, q_concentration: 3.0}

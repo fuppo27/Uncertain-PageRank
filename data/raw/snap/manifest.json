@@ -1,0 +1,106 @@
+{
+  "wiki-Vote": {
+    "name": "wiki-Vote",
+    "url": "https://snap.stanford.edu/data/wiki-Vote.txt.gz",
+    "file": "wiki-Vote.txt.gz",
+    "bytes": 290339,
+    "sha256": "7d3e53626e14b8b09fb3b396bece9d481ad606bd64ceab066349ff57d4ada7fc",
+    "fetched_at": "2026-09-19T17:49:35+09:00"
+  },
+  "soc-Epinions1": {
+    "name": "soc-Epinions1",
+    "url": "https://snap.stanford.edu/data/soc-Epinions1.txt.gz",
+    "file": "soc-Epinions1.txt.gz",
+    "bytes": 1630437,
+    "sha256": "69a2dab71fa5e3a0715487599fc16ca17ddc847379325a6c765bbad6e3e36938",
+    "fetched_at": "2026-09-19T17:49:37+09:00"
+  },
+  "web-NotreDame": {
+    "name": "web-NotreDame",
+    "url": "https://snap.stanford.edu/data/web-NotreDame.txt.gz",
+    "file": "web-NotreDame.txt.gz",
+    "bytes": 3708538,
+    "sha256": "d4f4916db2b45060d4dde21fca2d6d757f245f4397528f72230eff3bb57e499e",
+    "fetched_at": "2026-09-19T17:49:39+09:00"
+  },
+  "web-Google": {
+    "name": "web-Google",
+    "url": "https://snap.stanford.edu/data/web-Google.txt.gz",
+    "file": "web-Google.txt.gz",
+    "bytes": 21168784,
+    "sha256": "bcac0af0471d749f4a8c010bca92b61cf2868a0570741de06892fc062f265ea6",
+    "fetched_at": "2026-09-19T17:49:56+09:00"
+  },
+  "wiki-Talk": {
+    "name": "wiki-Talk",
+    "url": "https://snap.stanford.edu/data/wiki-Talk.txt.gz",
+    "file": "wiki-Talk.txt.gz",
+    "bytes": 16947922,
+    "sha256": "0f3fd7bb8435ad0d46bd3cd06d2fb947c72d298a9310c8ce82b4d29ef973fb9f",
+    "fetched_at": "2026-09-19T17:50:00+09:00"
+  },
+  "web-BerkStan": {
+    "name": "web-BerkStan",
+    "url": "https://snap.stanford.edu/data/web-BerkStan.txt.gz",
+    "file": "web-BerkStan.txt.gz",
+    "bytes": 19657604,
+    "sha256": "760a1de92b8f5a68616254f1eafce337cc924a095c0af636a0337294a27fbb1b",
+    "fetched_at": "2026-09-19T17:50:04+09:00"
+  },
+  "cit-Patents": {
+    "name": "cit-Patents",
+    "url": "https://snap.stanford.edu/data/cit-Patents.txt.gz",
+    "file": "cit-Patents.txt.gz",
+    "bytes": 85139832,
+    "sha256": "9d05955aa997fbc84953c9eb7786675af80336a356404e75dc18aaa90d3553b0",
+    "fetched_at": "2026-09-19T17:50:23+09:00"
+  },
+  "soc-LiveJournal1": {
+    "name": "soc-LiveJournal1",
+    "url": "https://snap.stanford.edu/data/soc-LiveJournal1.txt.gz",
+    "file": "soc-LiveJournal1.txt.gz",
+    "bytes": 259619239,
+    "sha256": "d7bcd5a87b88c896c35fdb9611e804c3f4033c39b58c4c9ea3ba53c680d516d8",
+    "fetched_at": "2026-09-19T17:51:29+09:00"
+  },
+  "email-Eu-core-temporal": {
+    "name": "email-Eu-core-temporal",
+    "url": "https://snap.stanford.edu/data/email-Eu-core-temporal.txt.gz",
+    "file": "email-Eu-core-temporal.txt.gz",
+    "bytes": 1683428,
+    "sha256": "f6cc93249978e59d1aba111b55ea10ec553917419a3be1210012b5db3580efa6",
+    "fetched_at": "2026-09-19T17:51:31+09:00"
+  },
+  "CollegeMsg": {
+    "name": "CollegeMsg",
+    "url": "https://snap.stanford.edu/data/CollegeMsg.txt.gz",
+    "file": "CollegeMsg.txt.gz",
+    "bytes": 345339,
+    "sha256": "50ae2d98ed3bad9ddb18dbd495a89e5e10cfb8f7e86932827db29fc41b41f9fa",
+    "fetched_at": "2026-09-19T17:51:32+09:00"
+  },
+  "sx-mathoverflow": {
+    "name": "sx-mathoverflow",
+    "url": "https://snap.stanford.edu/data/sx-mathoverflow.txt.gz",
+    "file": "sx-mathoverflow.txt.gz",
+    "bytes": 3616495,
+    "sha256": "cdc635fda76dab06ab02ca242563fa333bb83d096571342ef0326d85ff0c04da",
+    "fetched_at": "2026-09-19T17:51:35+09:00"
+  },
+  "sx-askubuntu": {
+    "name": "sx-askubuntu",
+    "url": "https://snap.stanford.edu/data/sx-askubuntu.txt.gz",
+    "file": "sx-askubuntu.txt.gz",
+    "bytes": 7385842,
+    "sha256": "54af4be03bf77030e8894e445679c4e20614f0b82d68fc8cb49431f70e07a0f6",
+    "fetched_at": "2026-09-19T17:51:38+09:00"
+  },
+  "wiki-talk-temporal": {
+    "name": "wiki-talk-temporal",
+    "url": "https://snap.stanford.edu/data/wiki-talk-temporal.txt.gz",
+    "file": "wiki-talk-temporal.txt.gz",
+    "bytes": 48120144,
+    "sha256": "2053b1f5bb3c46320f8e4da91aa6d7d79ec8d78e2c8cc99cede609c0c375f33e",
+    "fetched_at": "2026-09-19T17:51:45+09:00"
+  }
+}

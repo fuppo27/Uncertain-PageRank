@@ -1,0 +1,37 @@
+# Experiment 20: how closely analytic decoding and selection match exhaustive
+# enumeration
+#
+# Criteria:
+#   1. Candidate-set gate: both mean coverage E[|T(X) and C| / k] and full
+#      coverage Pr[T(X) subset of C]. Mean coverage alone cannot detect nodes
+#      missed because they fall outside the candidate set.
+#   2. Decoding quality: the loss of the set the analytic decoder reports,
+#      **evaluated on the exact worlds**. "Zero risk under its own model" would
+#      hide cases where the reported set is simply wrong.
+#   3. Selection quality: oracle regret under the exact loss.
+#
+# Principle: evaluation is always the exact loss from enumeration. Selection and
+# evaluation never share an approximation. Candidates are truncated at
+# L = L_over_k * k so that n > L and the effect of truncation is visible.
+
+name: exp20_analytic
+seed: 20260922
+output_dir: outputs/exp20_analytic
+alpha: 0.85
+normal_draws: 100000
+
+topk: [3]
+# Sweep L/k to quantify candidate truncation; with n=16, L<16 truncates
+L_over_k: [1.5, 2, 3, 5]
+budgets: [1, 2, 3]
+seeds: [1, 2, 3]
+tie_permutations: [null, 101, 202]
+
+graphs:
+  - {label: "ER n=16 uniform q=0.5",   topology: er,    n: 16, m: 12, q: uniform, q_value: 0.5}
+  # Mixing certain links in also exercises the index bookkeeping
+  - {label: "ER n=16 mixed certain",  topology: er,    n: 16, m: 16, q: mixed, q_mean: 0.6, q_concentration: 3.0, certain_fraction: 0.25}
+  - {label: "ER n=16 Beta",  topology: er,    n: 16, m: 12, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Preferential attachment n=16",     topology: pa,    n: 16, m_out: 1, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Star (6 bidirectional spokes)", topology: star,  n: 16, m: 12, q: beta, q_mean: 0.6, q_concentration: 3.0}
+  - {label: "Cycle with 2 chords",        topology: cycle, n: 16, m: 12, q: beta, q_mean: 0.6, q_concentration: 3.0}

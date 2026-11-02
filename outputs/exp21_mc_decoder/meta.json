@@ -1,0 +1,104 @@
+{
+  "timestamp": "2026-09-23T15:29:20+09:00",
+  "git": {
+    "commit": "c2f8b4642c49f73a13b9966d736833a020a3b9d8",
+    "branch": "exp-20260919-001",
+    "dirty": "yes"
+  },
+  "python": "3.11.0",
+  "numpy": "1.24.2",
+  "scipy": "1.11.1",
+  "platform": "Linux-5.15.0-122-generic-x86_64-with-glibc2.35",
+  "hostname": "fsm01",
+  "config": {
+    "name": "exp21_mc_decoder",
+    "seed": 20260923,
+    "output_dir": "outputs/exp21_mc_decoder",
+    "alpha": 0.85,
+    "tol": 1e-12,
+    "topk": 3,
+    "budgets": [
+      1,
+      2,
+      3
+    ],
+    "decoder_samples": [
+      100,
+      1000
+    ],
+    "decoder_repeats": 20,
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "graphs": [
+      {
+        "label": "ER n=16 uniform q=0.5",
+        "topology": "er",
+        "n": 16,
+        "m": 12,
+        "q": "uniform",
+        "q_value": 0.5
+      },
+      {
+        "label": "ER n=16 Beta",
+        "topology": "er",
+        "n": 16,
+        "m": 12,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "ER n=16 mixed certain",
+        "topology": "er",
+        "n": 16,
+        "m": 16,
+        "q": "mixed",
+        "q_mean": 0.6,
+        "q_concentration": 3.0,
+        "certain_fraction": 0.25
+      },
+      {
+        "label": "Preferential attachment n=16",
+        "topology": "pa",
+        "n": 16,
+        "m_out": 1,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "Star (6 bidirectional spokes)",
+        "topology": "star",
+        "n": 16,
+        "m": 12,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "Star (asymmetric z; few ties)",
+        "topology": "star",
+        "n": 16,
+        "m": 12,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0,
+        "personalization": "skewed"
+      },
+      {
+        "label": "Cycle with 2 chords",
+        "topology": "cycle",
+        "n": 16,
+        "m": 12,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      }
+    ]
+  }
+}

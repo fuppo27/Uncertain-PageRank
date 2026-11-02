@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-11-02T11:32:00+09:00",
+  "git": {
+    "commit": "0b3764372fb39362980c8e95245052052ea2d6af",
+    "branch": "exp-20260919-001",
+    "dirty": "yes"
+  },
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "hostname": "fsm01",
+  "config": {
+    "name": "exp25_real_networks",
+    "seed": 20260923,
+    "output_dir": "outputs/exp25_real_networks",
+    "alpha": 0.85,
+    "tol": 1e-12,
+    "q_mean": 0.7,
+    "q_concentration": 10.0,
+    "boundary_ks": [
+      10,
+      100,
+      1000
+    ],
+    "contrasts": [
+      "boundary",
+      "node_top"
+    ],
+    "n_candidate_sources": 30,
+    "n_strata": 8,
+    "reference_samples": 1000,
+    "mc_budgets": [
+      250
+    ],
+    "mc_tol": 1e-08,
+    "mc_chunk": 128,
+    "networks": [
+      {
+        "name": "Trackback NW",
+        "path": "data/raw/original/trackback/blog34.dlbl",
+        "mc_validation": false
+      },
+      {
+        "name": "wiki-Vote",
+        "path": "data/raw/snap/wiki-Vote.txt.gz",
+        "mc_validation": false
+      },
+      {
+        "name": "soc-Epinions1",
+        "path": "data/raw/snap/soc-Epinions1.txt.gz",
+        "mc_validation": false
+      },
+      {
+        "name": "Follow NW",
+        "path": "data/raw/original/follow/ameblo.dlbl",
+        "mc_validation": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# Raw data. The result CSVs under outputs/ are tracked: they are what this
+# repository distributes. The public datasets are not redistributed here, only
+# their retrieval URLs and SHA256 checksums in data/raw/snap/manifest.json.
+data/raw/*
+!data/raw/README.md
+!data/raw/original/
+data/raw/original/*
+!data/raw/original/*/
+data/raw/original/*/*
+!data/raw/snap/
+data/raw/snap/*
+!data/raw/snap/manifest.json
+!data/raw/original/follow/*.dlbl
+!data/raw/original/trackback/*.dlbl

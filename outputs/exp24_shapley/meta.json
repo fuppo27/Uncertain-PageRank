@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-09-23T21:56:02+09:00",
+  "git": {
+    "commit": "4aac31c5cde839ec543fae5124e2c9baf434c33d",
+    "branch": "exp-20260919-001",
+    "dirty": "yes"
+  },
+  "python": "3.11.0",
+  "numpy": "1.24.2",
+  "scipy": "1.11.1",
+  "platform": "Linux-5.15.0-122-generic-x86_64-with-glibc2.35",
+  "hostname": "fsm01",
+  "config": {
+    "name": "exp24_shapley",
+    "seed": 20260923,
+    "output_dir": "outputs/exp24_shapley",
+    "alpha": 0.85,
+    "boundary_ks": [
+      1,
+      2,
+      3
+    ],
+    "contrasts": [
+      "boundary",
+      "node_top",
+      "identity"
+    ],
+    "max_sources": 11,
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "graphs": [
+      {
+        "label": "ER n=10",
+        "topology": "er",
+        "n": 10,
+        "m": 11,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "ER n=10 uniform",
+        "topology": "er",
+        "n": 10,
+        "m": 11,
+        "q": "uniform",
+        "q_value": 0.5
+      },
+      {
+        "label": "Preferential attachment n=9",
+        "topology": "pa",
+        "n": 9,
+        "m_out": 1,
+        "q": "beta",
+        "q_mean": 0.5,
+        "q_concentration": 2.0
+      },
+      {
+        "label": "Star n=7",
+        "topology": "star",
+        "n": 8,
+        "m": 10,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      },
+      {
+        "label": "Cycle n=10",
+        "topology": "cycle",
+        "n": 10,
+        "m": 11,
+        "q": "beta",
+        "q_mean": 0.6,
+        "q_concentration": 3.0
+      }
+    ]
+  }
+}
