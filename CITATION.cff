@@ -8,6 +8,10 @@ authors:
     orcid: "https://orcid.org/0000-0003-3448-8182"
     affiliation: "Tokyo University of Technology"
 license: MIT
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23938199
+    description: Concept DOI, resolving to the most recent version of the archive
 abstract: >-
   Exact second moments of the random transition matrix of an uncertain graph, and a
   first-order attribution of the uncertainty of a fixed contrast of the PageRank vector

@@ -1,5 +1,7 @@
 # Auditable PageRank on Uncertain Graphs
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23938199.svg)](https://doi.org/10.5281/zenodo.23938199)
+
 Code and result data for *Auditable PageRank on Uncertain Graphs: Exact Row Moments and
 Source-Level Attribution of Ranking Uncertainty*.
 
@@ -72,6 +74,14 @@ target evaluated on the linearized model, to machine precision), the law of tota
 per source, exactness under full observation, the agreement of the quadratic-form
 recursion with exhaustive enumeration, and a guard that the row second moments are
 computed by the exact dynamic program at every out-degree.
+
+## Citing
+
+Each release is archived on Zenodo. The concept DOI
+[10.5281/zenodo.23938199](https://doi.org/10.5281/zenodo.23938199) always resolves to the
+most recent version; every release also carries its own DOI, so a particular state of this
+repository can be cited exactly. `CITATION.cff` holds the metadata, and GitHub's "Cite
+this repository" button reads it.
 
 ## License
 
