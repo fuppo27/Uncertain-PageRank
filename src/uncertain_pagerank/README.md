@@ -58,10 +58,14 @@ Measured at `q_e = 0.9`, where the true value per link is `O(1/D)`:
 
 | D | Eq. (9) as published (relative error) | This implementation |
 | ---: | ---: | ---: |
-| 20 | 7.6e-12 | 6.9e-16 |
-| 50 | 3.5e-04 | 8.7e-16 |
-| 100 | 1.1e+10 | 1.0e-15 |
-| 200 | 2.2e+37 | 1.4e-15 |
+| 20 | 1.6e-12 | 0 |
+| 50 | 1.2e-04 | 4.4e-16 |
+| 100 | 3.2e+07 | 0 |
+| 200 | 3.3e+33 | 2.2e-16 |
+
+Measured against the exact leave-one-out reference
+(`expected_transition_loo_reference`). `test_published_eq9_error_matches_the_paper`
+pins the two values the paper quotes.
 
 This implementation selects the direction instead: forward when `q_i < 1/2`, backward
 otherwise (amplification `(1 - q_i) / q_i <= 1`). The two recurrences are algebraically

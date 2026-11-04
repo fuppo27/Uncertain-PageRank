@@ -11,10 +11,12 @@ versions to `data/processed/`.
 data/raw/
 ├── original/          Laboratory data used in the conference version (IEEE BigData 2020)
 │   ├── follow/        Ameba Blog follower network    (56,604 nodes / 734,737 links)
-│   ├── trackback/     goo Blog trackback network     (12,047 nodes /  53,315 links)
-│   └── email/         Enron email network            (19,603 nodes / 210,950 links)
+│   └── trackback/     goo Blog trackback network     (12,047 nodes /  53,315 links)
 └── snap/              Public data from SNAP (placed by scripts/download_snap.py)
 ```
+
+The conference version also used an Enron email network, which this work does not; it is
+not part of this repository.
 
 The file format under `original/` has changed since the conference version, so the reader
 in `src/uncertain_pagerank/datasets.py` was written against the files as they are now.

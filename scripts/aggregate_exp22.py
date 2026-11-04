@@ -100,7 +100,7 @@ def main() -> None:
           f"max {u['lin_rel_err_median'].max():.4f}")
     print(f"\nenumeration {u['enumerate_seconds'].mean():.2f}s vs analytic "
           f"{u['analytic_seconds'].mean():.4f}s (ratio "
-          f"{u['enumerate_seconds'].mean() / u['analytic_seconds'].mean():.0f}x)。"
+          f"{u['enumerate_seconds'].mean() / u['analytic_seconds'].mean():.0f}x)."
           "\nEnumeration is 2^m_u, so this ratio grows exponentially with the "
           "number of uncertain links.")
 

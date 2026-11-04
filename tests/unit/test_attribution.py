@@ -418,3 +418,38 @@ def test_owen_estimator_is_consistent_with_exact_attribution():
         errs.append(float(np.mean(e)))
     assert errs[1] < errs[0]
     assert errs[1] < 0.10
+
+
+def test_tied_spearman_ignores_a_machine_precision_ordering():
+    """A tie broken by rounding noise must not move the reported correlation.
+
+    On a generator with uniform `q` the sources are exchangeable, so their
+    effects are exactly equal in exact arithmetic and differ by ~1e-17 once
+    computed. Six of experiment 24's 75 conditions sit on such a tie, and the
+    closest genuine gap anywhere is 9e-5, so collapsing them is safe.
+    """
+    from scipy.stats import spearmanr
+
+    from uncertain_pagerank.experiments.exp24_shapley import tied_ranks, tied_spearman
+
+    eps = 1e-15
+    assert 1.0 + eps != 1.0, "the perturbation has to survive float64"
+
+    # a near-tie collapses, a real gap of the same absolute size does not
+    out = tied_ranks(np.array([1.0, 1.0 + eps, 2.0, 2.5]))
+    assert out[0] == out[1]
+    assert out[2] != out[3]
+
+    # the tolerance is relative to the largest magnitude
+    small = tied_ranks(np.array([1e-20, 2e-20, 1.0]))
+    assert small[0] == small[1]
+
+    # the same values with the noise swapped: plain Spearman is fooled
+    a = np.array([1.0, 1.0 + eps, 3.0, 4.0])
+    b = np.array([1.0 + eps, 1.0, 3.0, 4.0])
+    assert spearmanr(a, b).statistic < 1.0
+    assert tied_spearman(a, b) == 1.0
+
+    # a genuine reordering is still reported
+    assert tied_spearman(np.array([1.0, 2.0, 3.0, 4.0]),
+                         np.array([2.0, 1.0, 3.0, 4.0])) < 1.0

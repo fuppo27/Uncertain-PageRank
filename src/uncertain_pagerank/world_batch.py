@@ -40,7 +40,7 @@ def batch_world_scores(
         masks: (S, m) of 0/1, the connection state of each link.
         chunk: how many worlds to solve at once.
     Returns:
-        (S, n)。
+        (S, n).
     """
     n, m = graph.n, graph.m
     z = _resolve_z(z, n)

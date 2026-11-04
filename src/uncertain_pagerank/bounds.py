@@ -46,7 +46,7 @@ class ErrorEstimates:
     """
 
     v_per_node: np.ndarray
-    """V(v) = sum_u y0(u)^2 Var(p_X(u,v))。"""
+    """V(v) = sum_u y0(u)^2 Var(p_X(u,v))."""
 
     sum_sqrt_v: float
     max_sqrt_v: float

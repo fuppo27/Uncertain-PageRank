@@ -47,6 +47,8 @@ Then, by section of the paper:
 | &nbsp;&nbsp;analytic columns only, reusing the saved reference | `python scripts/real_per_source.py --net wikivote --reuse-mc` |
 | Budget of the reference | `python scripts/real_budget_strata.py --net wikivote --rep 1`, then `python scripts/aggregate_budget_curve.py` |
 | Total-variance check | `python scripts/total_variance_check.py` |
+| Gaussian-decoder table of the appendix | `python scripts/aggregate_exp20.py` |
+| Same-footing per-source table and its paired bootstrap | `python scripts/aggregate_real_per_source.py` |
 | Sensitivity to $q$ / dangling | `python scripts/q_sensitivity.py`, `python scripts/dangling_sensitivity.py` |
 | Figures | `python scripts/make_figures.py` |
 

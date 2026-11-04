@@ -161,7 +161,7 @@ def score_covariance(
 ) -> np.ndarray:
     """The first-order covariance of the PageRank scores of the given nodes.
 
-    Cov(y_v, y_w) ~= alpha^2 c_v^T M c_w。
+    Cov(y_v, y_w) ~= alpha^2 c_v^T M c_w.
 
     Args:
         graph: the uncertain graph.
@@ -273,7 +273,7 @@ def variance_attribution(
         alpha: the damping factor.
         z: the personalization vector.
     Returns:
-        Attribution。
+        Attribution.
     """
     z = _resolve_z(z, graph.n)
     x = np.asarray(direction, dtype=np.float64)
@@ -333,7 +333,7 @@ def edge_acquisition_scores(
         graph: the uncertain graph.
         et: the expected transition matrix.
         y0: the p-average scores.
-        direction: x = (I - alpha Pbar)^{-1} w。
+        direction: x = (I - alpha Pbar)^{-1} w.
         alpha: the damping factor.
         z: the personalization vector.
     Returns:

@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-09-26T03:09:48+09:00",
+  "timestamp": "2026-11-04T02:07:20+09:00",
   "git": {
-    "commit": "c0fccb59056d6fd827332df9a8250b245ca782ef",
+    "commit": "b0625a910123f34ce77e32de4783d74b5dffde25",
     "branch": "exp-20260919-001",
-    "dirty": "yes"
+    "dirty": "no"
   },
-  "python": "3.11.0",
-  "numpy": "1.24.2",
-  "scipy": "1.11.1",
-  "platform": "Linux-5.15.0-122-generic-x86_64-with-glibc2.35",
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
   "hostname": "fsm01",
   "config": {
     "name": "exp23c_owen",

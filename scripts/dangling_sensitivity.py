@@ -15,6 +15,7 @@ contrast itself. Both comparisons are therefore reported: one with the contrast
 held fixed, isolating the effect of the transition model, and one where each
 convention builds the contrast from its own y0, as it would be in use.
 """
+import csv
 import sys
 from pathlib import Path
 
@@ -38,6 +39,7 @@ NETS = [("Trackback NW", "data/raw/original/trackback/blog34.dlbl", load_dlbl),
 
 
 def main() -> None:
+    rows: list[dict] = []
     print(f"{'network':14s} {'rho (fixed)':>12s} {'top1 same':>10s} "
           f"{'rho (own)':>10s} {'top1 same':>10s} {'top1 share A':>13s} "
           f"{'top1 share B':>13s} {'dangling':>9s}")
@@ -63,6 +65,20 @@ def main() -> None:
               f"{spearmanr(phiA[act], phiB_own[act]).statistic:11.4f} "
               f"{str(own_top1):>14s} {sA[0]:11.4f} {sB[0]:11.4f} "
               f"{et.delta.mean():10.4f}", flush=True)
+        rows.append({"network": name,
+                     "rho_contrast_fixed": float(spearmanr(phiA[act], phiB_same[act]).statistic),
+                     "top1_same_fixed": same_top1,
+                     "rho_contrast_rebuilt": float(spearmanr(phiA[act], phiB_own[act]).statistic),
+                     "top1_same_rebuilt": own_top1,
+                     "top1_share_A": float(sA[0]), "top1_share_B": float(sB[0]),
+                     "dangling_rate": float(et.delta.mean())})
+
+    out = REPO / "outputs/dangling_sensitivity.csv"
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+    print(f"-> {out}")
 
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@ second comparison holds the contrast at the baseline. The first includes the
 effect that changing q changes the ranking problem itself; the second isolates
 how much the attribution for the same ranking problem moves with q.
 """
+import csv
 import sys
 from pathlib import Path
 
@@ -37,6 +38,7 @@ NETS = [
 
 
 def main() -> None:
+    rows: list[dict] = []
     for name, p, loader in NETS:
         g0 = loader(REPO / p).graph
         z = uniform_vector(g0.n)
@@ -64,7 +66,20 @@ def main() -> None:
                   f"{phi[d1].sum() / phi.sum():8.1%} "
                   f"{spearmanr(ref[act], phi[act]).statistic:11.4f} "
                   f"{spearmanr(ref[act], phi_fix[act]).statistic:11.4f}", flush=True)
+            rows.append({"network": name, "q_model": qname,
+                         "top1_share": float(s[0]), "top10_share": float(s[:10].sum()),
+                         "n_sources_for_90pct": int(np.searchsorted(np.cumsum(s), 0.90)) + 1,
+                         "share_outdeg_one": float(phi[d1].sum() / phi.sum()),
+                         "rho_contrast_rebuilt": float(spearmanr(ref[act], phi[act]).statistic),
+                         "rho_contrast_fixed": float(spearmanr(ref[act], phi_fix[act]).statistic)})
         print(flush=True)
+
+    out = REPO / "outputs/q_sensitivity.csv"
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+    print(f"-> {out}")
 
 
 if __name__ == "__main__":

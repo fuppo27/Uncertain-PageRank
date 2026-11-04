@@ -266,3 +266,28 @@ def test_sampled_bias_estimate_converges():
     )
     assert many < few
     assert many < 0.5 * base
+
+
+def test_published_eq9_error_matches_the_paper():
+    """Pin the two deconvolution errors the paper quotes.
+
+    Section IV-B states that at q=0.9 the published forward form of Eq. (9)
+    reaches a relative error of 1.2e-4 at out-degree 50 and 3e7 at 100, while
+    the direction rule stays at machine precision. These had drifted once
+    already in the module README, so they are fixed here.
+    """
+    for d, lo, hi in [(50, 1.0e-4, 1.5e-4), (100, 2.0e7, 5.0e7)]:
+        q = np.full(d, 0.9)
+        g = UncertainGraph.from_edges(d + 1, [(0, v) for v in range(1, d + 1)], q)
+        ref = expected_transition_loo_reference(g).B.data
+        naive = np.abs(expected_transition_naive_eq9(g).B.data / ref - 1.0).max()
+        stable = np.abs(expected_transition(g, method="dp").B.data / ref - 1.0).max()
+        assert lo < naive < hi, f"D={d}: published form at {naive:.2e}"
+        assert stable <= 1e-15, f"D={d}: direction rule at {stable:.2e}"
+
+    # The claim through out-degree 200 is the one the paper makes.
+    q = np.full(200, 0.9)
+    g = UncertainGraph.from_edges(201, [(0, v) for v in range(1, 201)], q)
+    ref = expected_transition_loo_reference(g).B.data
+    assert np.abs(expected_transition(g, method="dp").B.data / ref - 1.0).max() <= 4.4e-16
+    assert np.abs(expected_transition_naive_eq9(g).B.data / ref - 1.0).max() > 1e30

@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-09-22T17:07:38+09:00",
+  "timestamp": "2026-11-03T22:39:12+09:00",
   "git": {
-    "commit": "d3628925b2adb491e27453fb8c43ec876b8a6cda",
+    "commit": "44e8e34e2a9c2cd0bbc35de83b4ae65be12ea524",
     "branch": "exp-20260919-001",
-    "dirty": "yes"
+    "dirty": "no"
   },
-  "python": "3.11.0",
-  "numpy": "1.24.2",
-  "scipy": "1.11.1",
-  "platform": "Linux-5.15.0-122-generic-x86_64-with-glibc2.35",
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
   "hostname": "fsm01",
   "config": {
     "name": "exp20_analytic",

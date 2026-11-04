@@ -27,10 +27,10 @@ class ExactSavgResult:
     """The result of an exact s-average computation."""
 
     scores: np.ndarray
-    """s-avg: E_X[PageRank(P_X)]。"""
+    """s-avg: E_X[PageRank(P_X)]."""
 
     second_moment: np.ndarray
-    """E_X[PageRank(P_X)^2]。"""
+    """E_X[PageRank(P_X)^2]."""
 
     n_worlds: int
     """The number of worlds enumerated, 2^{m_u}."""
@@ -109,7 +109,7 @@ def exact_savg_alphas(
         chunk_size: how many worlds to process at once. Chosen from the
             available memory by default.
     Returns:
-        alpha -> ExactSavgResult。
+        alpha -> ExactSavgResult.
     """
     n = graph.n
     z = _resolve_z(z, n)

@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-09-23T15:29:20+09:00",
+  "timestamp": "2026-11-03T22:32:28+09:00",
   "git": {
-    "commit": "c2f8b4642c49f73a13b9966d736833a020a3b9d8",
+    "commit": "44e8e34e2a9c2cd0bbc35de83b4ae65be12ea524",
     "branch": "exp-20260919-001",
-    "dirty": "yes"
+    "dirty": "no"
   },
-  "python": "3.11.0",
-  "numpy": "1.24.2",
-  "scipy": "1.11.1",
-  "platform": "Linux-5.15.0-122-generic-x86_64-with-glibc2.35",
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
   "hostname": "fsm01",
   "config": {
     "name": "exp21_mc_decoder",

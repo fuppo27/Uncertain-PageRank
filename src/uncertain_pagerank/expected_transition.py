@@ -98,7 +98,7 @@ def _expected_row_dp(q: np.ndarray, phi: np.ndarray) -> np.ndarray:
 
     Args:
         q: length D, the connection probabilities.
-        phi: poisson_binomial_pmf(q)。
+        phi: poisson_binomial_pmf(q).
     Returns:
         Length D, the expected transition probabilities.
     """
@@ -151,7 +151,7 @@ def expected_transition(
 
     Args:
         graph: the uncertain graph.
-        method: "auto" | "uniform" | "dp"。
+        method: "auto" | "uniform" | "dp".
             "uniform" is the closed form of Eq. (6), valid when every link has
             the same connection probability. "dp" is the dynamic program of
             Eq. (7)-(10) for general non-uniform q_e. "auto" picks "uniform"

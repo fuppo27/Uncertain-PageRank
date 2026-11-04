@@ -48,6 +48,37 @@ from .exp17_timescale_gate import build
 
 REPO = Path(__file__).resolve().parents[3]
 
+# Relative tolerance below which two effects count as tied. On a generator with
+# uniform `q` the sources are exchangeable, so their effects are *exactly* equal
+# in exact arithmetic and differ by 1e-18 to 1e-15 once computed in floating
+# point. Six of the 75 conditions sit on such a tie, and the closest genuine gap
+# anywhere is 9e-5, four orders of magnitude up, so the threshold is not a
+# judgement call. Without it `spearmanr` ranks a tie by rounding noise, and the
+# reported correlation changes with the summation order.
+TIE_RTOL = 1e-9
+
+
+def tied_ranks(v: np.ndarray, rtol: float = TIE_RTOL) -> np.ndarray:
+    """`v` with values that are tied to within `rtol` of its largest magnitude
+    collapsed onto one representative, so `spearmanr` assigns them equal ranks.
+    """
+    v = np.asarray(v, dtype=float)
+    scale = max(float(np.abs(v).max()), np.finfo(float).tiny)
+    order = np.argsort(v, kind="stable")
+    out = v.copy()
+    rep = v[order[0]]
+    for j in order[1:]:
+        if v[j] - rep <= rtol * scale:
+            out[j] = rep
+        else:
+            rep = v[j]
+    return out
+
+
+def tied_spearman(a: np.ndarray, b: np.ndarray) -> float:
+    """Spearman correlation that treats near-ties in either vector as ties."""
+    return float(spearmanr(tied_ranks(a), tied_ranks(b)).statistic)
+
 
 def run(config: dict) -> list[dict]:
     rows: list[dict] = []
@@ -100,11 +131,11 @@ def run(config: dict) -> list[dict]:
                     "psi_sum_share": float(p.sum() / var),
                     # how much the ordering moves when the interaction is
                     # reallocated
-                    "spearman_psi_shapley": float(spearmanr(p, s_).statistic),
+                    "spearman_psi_shapley": tied_spearman(p, s_),
                     "top1_same_psi_shapley": bool(np.argmax(p) == np.argmax(s_)),
                     # which of the two the analytic route predicts
-                    "spearman_phi_psi": float(spearmanr(f, p).statistic),
-                    "spearman_phi_shapley": float(spearmanr(f, s_).statistic),
+                    "spearman_phi_psi": tied_spearman(f, p),
+                    "spearman_phi_shapley": tied_spearman(f, s_),
                     # how much value is reallocated
                     "max_abs_reallocation_share": float(np.abs(s_ - p).max() / var),
                     "shapley_seconds": t_sh,

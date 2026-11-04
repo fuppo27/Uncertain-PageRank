@@ -214,7 +214,7 @@ def bias_estimate_sampled(
     delta = et.delta
 
     def bar_matvec(x: np.ndarray) -> np.ndarray:
-        """Pbar^T x = B^T x + z (delta . x)。"""
+        """Pbar^T x = B^T x + z (delta . x)."""
         return bar_t @ x + z * float(delta @ x)
 
     sampler = WorldSampler(graph, np.random.default_rng(seed))

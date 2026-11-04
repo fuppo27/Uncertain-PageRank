@@ -127,7 +127,7 @@ def node_contrasts(nodes, n: int, lam=None) -> ContrastSet:
 
 
 def identity_contrast(n: int) -> ContrastSet:
-    """C = I。Psi_u(I) = sum_v Var(E[y_X(v) | X_u])。
+    """C = I. Psi_u(I) = sum_v Var(E[y_X(v) | X_u]).
 
     Used for a task-agnostic robustness check that singles out no `w`.
     """
@@ -179,9 +179,9 @@ def resolvent_columns(
     arbitrary right-hand side, and hence to an arbitrary contrast.
 
     Args:
-        rhs: (n, r)。
+        rhs: (n, r).
     Returns:
-        (n, r)。
+        (n, r).
     """
     n = et.n
     z = _resolve_z(z, n)
@@ -353,7 +353,7 @@ def exact_attribution(
     spread of the within-group means is measured.
 
     Args:
-        bits: (W, m_u)。
+        bits: (W, m_u).
         weights: (W,), the probability of each world.
         values: (W, r), the values of Z.
         edge_source: length m_u, the source of each uncertain link.
@@ -382,7 +382,7 @@ def exact_attribution(
 
 
 def total_variance(weights: np.ndarray, values: np.ndarray) -> float:
-    """tr Cov(Z) = sum_j Var(Z_j)。"""
+    """tr Cov(Z) = sum_j Var(Z_j)."""
     weights = np.asarray(weights, dtype=np.float64)
     values = np.asarray(values, dtype=np.float64)
     ez = weights @ values
@@ -392,7 +392,7 @@ def total_variance(weights: np.ndarray, values: np.ndarray) -> float:
 def interaction_term(
     weights: np.ndarray, values: np.ndarray, psi: np.ndarray
 ) -> float:
-    """I_inter = Var(Z) - sum_u Psi_u。
+    """I_inter = Var(Z) - sum_u Psi_u.
 
     It is not zero for the true nonlinear PageRank. Where it is large, ranking
     single sources is not the whole story, and that has to be said.
@@ -486,7 +486,7 @@ def pickfreeze_attribution(
     "computable without sampling" means here.
 
     Returns:
-        PickFreezeResult。
+        PickFreezeResult.
     """
     import time as _time
 
@@ -690,9 +690,9 @@ def pickfreeze_attribution_owen(
     design.
 
     Args:
-        n_samples: n。
+        n_samples: n.
     Returns:
-        PickFreezeResult。
+        PickFreezeResult.
     """
     import time as _time
 

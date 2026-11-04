@@ -15,6 +15,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from scipy.stats import spearmanr
 
 REPO = Path(__file__).resolve().parents[1]
 FIG = REPO / "papers/journal/figures"
@@ -72,21 +73,29 @@ def fig_real_per_source() -> None:
     vertical axis is symlog, and sources the budget could not resolve are kept
     rather than dropped. The strata are distinguished by colour and marker.
     """
+    # The keys must match the stratum values in the CSV exactly. A mismatch used
+    # to drop a whole stratum silently, so the count is asserted below.
     labels = {"top Phi": ("top $\\widehat\\Phi$", BLUE, "o"),
-              "high PR, low Phi": ("high PR, low $\\widehat\\Phi$", ORANGE, "s"),
+              "high PR low Phi": ("high PR, low $\\widehat\\Phi$", ORANGE, "s"),
               "low out-degree": ("low out-degree", GREEN, "^"),
               "random": ("random", PINK, "D")}
-    nets = [("trackback", "Trackback NW", 0.944, 0.960),
-            ("wikivote", "wiki-Vote", 0.973, 0.978)]
+    nets = [("trackback", "Trackback NW"), ("wikivote", "wiki-Vote")]
     fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.5), sharey=False)
-    for ax, (key, title, sh, rho) in zip(axes, nets):
+    for ax, (key, title) in zip(axes, nets):
         d = pd.read_csv(REPO / f"outputs/real_per_source_{key}.csv")
+        unknown = set(d.stratum) - set(labels)
+        assert not unknown, f"{key}: stratum not in the legend: {sorted(unknown)}"
+        # Computed from the data, never hard-coded: a stale constant here would
+        # put a wrong number in the figure while the table stayed right.
+        rho = spearmanr(d.psi_ref, d.phi_hat).statistic
+        sh = spearmanr(d.psi_a, d.psi_b).statistic
         d = d.sort_values("phi_hat", ascending=False).reset_index(drop=True)
         d["rank"] = np.arange(1, len(d) + 1)
+        drawn = 0
         for jp, (lab, c, mk) in labels.items():
             s = d[d.stratum == jp]
-            if s.empty:
-                continue
+            assert not s.empty, f"{key}: no point in stratum {jp!r}"
+            drawn += len(s)
             ax.errorbar(s["rank"], s.psi_ref, yerr=1.96 * s.psi_se, fmt=mk,
                         color=c, ms=3.6, mew=0, lw=0, elinewidth=0.7,
                         ecolor=c, capsize=1.4, alpha=0.95, label=lab, zorder=3)
@@ -98,6 +107,8 @@ def fig_real_per_source() -> None:
         for sp in ("top", "right"):
             ax.spines[sp].set_visible(False)
         ax.tick_params(labelsize=6)
+        assert drawn == len(d), f"{key}: {drawn} of {len(d)} points drawn"
+        print(f"  {key}: {drawn} points, rho={rho:.4f}, split-half={sh:.4f}")
     axes[0].set_ylabel(r"reference $\Psi_u(C)$  (95% CI)")
     axes[0].legend(loc="lower left", frameon=False, fontsize=5.8,
                    handletextpad=0.3, borderpad=0.15, labelspacing=0.25)

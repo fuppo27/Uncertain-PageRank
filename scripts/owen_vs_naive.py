@@ -6,6 +6,7 @@ usability of a reference is measured by the rank correlation between two
 independent runs of it (split-half). Owen costs twice as many solves per sample,
 so its sample count is halved to match.
 """
+import csv
 import sys, time
 from pathlib import Path
 import numpy as np
@@ -28,6 +29,7 @@ SPECS = [
 N_CAND, N_NAIVE = 40, 2000          # Owen matches the cost at half the samples
 
 def main() -> None:
+    rows: list[dict] = []
     for label, spec in SPECS:
         g = build(spec, np.random.default_rng(1))
         z = uniform_vector(g.n)
@@ -52,7 +54,19 @@ def main() -> None:
             ref = (a.psi + b.psi) / 2
             print(f"{name:>12s} {N:6d} {sh:11.4f} {a.n_solves + b.n_solves:9d} "
                   f"{dt:7.0f} {spearmanr(ref, phi).statistic:11.4f}", flush=True)
+            rows.append({"graph": label, "estimator": name, "n_samples": N,
+                         "split_half": sh, "solves": a.n_solves + b.n_solves,
+                         "seconds": dt,
+                         "rho_vs_phi": float(spearmanr(ref, phi).statistic)})
         print(flush=True)
+
+    out = REPO / "outputs/owen_vs_naive.csv"
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+    print(f"-> {out}")
+
 
 if __name__ == "__main__":
     main()

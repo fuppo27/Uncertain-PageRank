@@ -67,7 +67,7 @@ def beta_probs(
 ) -> UncertainGraph:
     """q_e ~ Beta(a, b), with concentration varying the spread at a fixed mean.
 
-    a = mean * concentration, b = (1 - mean) * concentration。
+    a = mean * concentration, b = (1 - mean) * concentration.
     A smaller concentration makes the uncertainty more heterogeneous.
     """
     a, b = mean * concentration, (1.0 - mean) * concentration

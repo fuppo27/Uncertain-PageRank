@@ -41,3 +41,20 @@ No network studied here ships with link probabilities. We assign them synthetica
 stated in the paper, and the assignment is part of the experiment configuration rather
 than of the data. `scripts/q_sensitivity.py` reports how much the conclusions depend on
 that choice.
+
+## Provenance recorded with each result
+
+Each directory under `outputs/` carries a `meta.json` with the time, the Python, NumPy
+and SciPy versions, the machine, and the experiment configuration in full. Two fields
+need a word of explanation.
+
+`git.commit` and `git.branch` refer to the private development repository the
+experiments were run from, not to this one, so they cannot be resolved here. The code in
+this repository is what produced the results; the commit is recorded only to tie a run
+to a point in that history.
+
+`git.dirty` is `"yes"` throughout: the runs were made from a working tree that had
+uncommitted edits, which is the normal state while an experiment is being developed. It
+does not mean the code here differs from the code that ran. We re-derived the figures
+and the budget curve from the files in this repository as a check, and they reproduce
+the values in the paper.

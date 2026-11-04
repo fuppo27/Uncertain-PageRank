@@ -7,7 +7,7 @@ from scipy import stats
 
 
 def l1(a: np.ndarray, b: np.ndarray) -> float:
-    """||a - b||_1。"""
+    """||a - b||_1."""
     return float(np.abs(a - b).sum())
 
 
