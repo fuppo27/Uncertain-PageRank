@@ -423,10 +423,11 @@ def test_owen_estimator_is_consistent_with_exact_attribution():
 def test_tied_spearman_ignores_a_machine_precision_ordering():
     """A tie broken by rounding noise must not move the reported correlation.
 
-    On a generator with uniform `q` the sources are exchangeable, so their
-    effects are exactly equal in exact arithmetic and differ by ~1e-17 once
-    computed. Six of experiment 24's 75 conditions sit on such a tie, and the
-    closest genuine gap anywhere is 9e-5, so collapsing them is safe.
+    In six of experiment 24's 75 conditions a pair of sources is exchanged by
+    an automorphism of the weighted graph, so those two effects are exactly
+    equal in exact arithmetic and differ by 4e-18 to 1.3e-15 of the largest
+    once computed. The closest gap that is not such a tie is 1.0e-5 of the
+    largest, four orders above the tolerance, so collapsing them is safe.
     """
     from scipy.stats import spearmanr
 

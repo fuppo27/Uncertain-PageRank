@@ -48,13 +48,18 @@ from .exp17_timescale_gate import build
 
 REPO = Path(__file__).resolve().parents[3]
 
-# Relative tolerance below which two effects count as tied. On a generator with
-# uniform `q` the sources are exchangeable, so their effects are *exactly* equal
-# in exact arithmetic and differ by 1e-18 to 1e-15 once computed in floating
-# point. Six of the 75 conditions sit on such a tie, and the closest genuine gap
-# anywhere is 9e-5, four orders of magnitude up, so the threshold is not a
-# judgement call. Without it `spearmanr` ranks a tie by rounding noise, and the
+# Relative tolerance below which two adjacent effects count as tied. In six of
+# this experiment's 75 conditions, all on the uniform-q ER generator, one pair of
+# sources is exchanged by an automorphism of the weighted graph, so those two
+# effects are *exactly* equal in exact arithmetic; computed in floating point
+# they differ by 4e-18 to 1.3e-15 of the largest effect. The tie is always a
+# single pair -- not the whole source set, which a uniform `q` alone would not
+# make exchangeable -- and it never involves the leading source. The closest gap
+# anywhere that is *not* such a tie is 1.0e-5 of the largest, so this threshold
+# sits six orders above the rounding and four below real structure, and is not a
+# judgement call. Without it `spearmanr` ranks a tie by rounding noise and the
 # reported correlation changes with the summation order.
+# Audited by scripts/audit_shapley_ties.py.
 TIE_RTOL = 1e-9
 
 
