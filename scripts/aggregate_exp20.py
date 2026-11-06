@@ -1,7 +1,7 @@
 """Aggregate experiment 20: the Gaussian decoder against the Bayes-optimal report.
 
-Prints the table of the appendix on the two negative results, plus the three
-checks that rule out numerical explanations for the failure.
+Prints the table of the supplemental material on the two negative results, plus
+the three checks that rule out numerical explanations for the failure.
 
 The excess loss is the exact loss of the set the decoder reports, minus the loss
 of the Bayes-optimal report. It is not `base_loss_gap`, which is a different
@@ -21,7 +21,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
 
-# The order the appendix table uses: by excess, cheapest first.
+# The order the table uses: by excess, cheapest first.
 LABELS = {
     "ER n=16 Beta": "ER, Beta q",
     "ER n=16 mixed certain": "ER, mixed certain",
